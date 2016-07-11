@@ -14,7 +14,8 @@ angular
     })
     .state('registration', {
       url: '/registration',
-      templateUrl: 'views/registration.html'
+      templateUrl: 'views/registration.html',
+      controller: 'RegistrationCtrl'
     })
     .state('404', {
       url: '/404',

@@ -5,13 +5,16 @@
     <b>New account</b>
     <br><br>
     <form class="custom">
-      <label for="username">Username</label>
-      <input type="text" class="form-control">
+      <label for="Email">Email</label>
+      <input type="text" id="email" ng-model="user.email" class="form-control">
+      <div class="error-msg text-danger" ng-if="errors.email">{{errors.email}}<br></div>
       <br>
       <label for="password">Password</label>
-      <input type="password" class="form-control">
+      <input type="password" id="password" ng-model="user.password" class="form-control">
+      <div class="error-msg text-danger" ng-if="errors.password">{{errors.password}}</div>
       <br>
-        <input class="btn btn-primary form-control" type="button" value="Create">
+      <input class="btn btn-primary form-control" ng-click="create()" type="button" value="Create">
+      <div class="error-msg text-danger" ng-if="errors.register">{{errors.register}}</div>
     </form>
   </div>
 </div>
