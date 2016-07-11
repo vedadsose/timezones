@@ -1,0 +1,12 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "mongodb": "mongodb://localhost:27017/Timezones",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "yrsvJEvTyEws/hOhZrggeNplJZ+1/R6/sKIFHOTGNdyWJlwjGBYXM029pzKQvYCNyXPuDfFtxj8aF5Kp8dmKCg=="
+    },
+    "local": {}
+  }
+}
