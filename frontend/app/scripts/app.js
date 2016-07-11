@@ -12,5 +12,6 @@ angular
   .module('timezonesApp', [
     'ngResource',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.router'
   ]);

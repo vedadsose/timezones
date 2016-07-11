@@ -1,7 +1,11 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
+
+// Roboto fonts
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
 
 .browsehappy {
   margin: 0.2em 0;
@@ -12,4 +16,28 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
+  background: #e6e6e6;
+  color: #2d2d2d;
+  font-family: 'Roboto', sans-serif;
 }
+
+// Headings
+h1, h2, h3 { margin: 0 }
+
+// Container styling
+.container-style {
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+// Form styling
+form.custom {
+  label {
+    font-weight: normal;
+  }
+}
+
+// Login
+@import "login"
