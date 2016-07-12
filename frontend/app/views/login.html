@@ -5,13 +5,14 @@
     <b>Enter your credentials</b>
     <br><br>
     <form class="custom">
-      <label for="username">Username</label>
-      <input type="text" class="form-control">
+      <label for="email">Email</label>
+      <input type="text" id="email" ng-model="user.email" class="form-control">
       <br>
       <label for="password">Password</label>
-      <input type="password" class="form-control">
+      <input type="password" id="password" ng-model="user.password" class="form-control">
       <br>
-        <input class="btn btn-primary form-control" type="button" value="Log in">
+      <input class="btn btn-primary form-control" type="button" ng-click="login()" value="Log in">
+      <div class="error-msg text-danger" ng-if="errors.login">{{errors.login}}</div>
     </form>
     <hr>
     <div class="text-center">Don't have an account?<br><a ui-sref="registration">Create one for free</a></div>

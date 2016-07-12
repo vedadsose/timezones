@@ -23,9 +23,7 @@ angular.module('timezonesApp')
     $scope.create = function() {
       User.create($scope.user).then(function(){
         $scope.errors = {}
-
       }, function(errors) {
-        console.log(errors)
         $scope.errors = errors
       });
     };
