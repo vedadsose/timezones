@@ -59,4 +59,11 @@ angular.module('timezonesApp')
       });
     }
 
+    this.logout = function() {
+      service.me = false
+      localStorageService.set('user', service.me)
+      service.token = false
+      localStorageService.set('token', service.token)
+    }
+
   });

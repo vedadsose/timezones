@@ -20,6 +20,12 @@ angular
       controller: 'LoginCtrl',
       authenticate: false
     })
+    .state('logout', {
+      controller: function($scope, $state, User) {
+        User.logout()
+  			$state.go('login')
+  		}
+    })
     .state('registration', {
       url: '/registration',
       templateUrl: 'views/registration.html',

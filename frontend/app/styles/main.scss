@@ -26,6 +26,8 @@ h1, h2, h3 { margin: 0 }
 
 // Container styling
 .container-style {
+  overflow-x: hidden;
+  margin-top: 30px;
   background: #fff;
   padding: 15px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
@@ -42,5 +44,5 @@ form.custom {
   }
 }
 
-// Login
-@import "login"
+// Dashboard
+@import "dashboard";

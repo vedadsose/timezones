@@ -23,6 +23,7 @@ angular.module('timezonesApp')
     $scope.create = function() {
       User.create($scope.user).then(function(){
         $scope.errors = {}
+        $state.go('dashboard')
       }, function(errors) {
         $scope.errors = errors
       });
