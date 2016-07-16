@@ -17,11 +17,15 @@ angular.module('timezonesApp')
 
     $scope.errors = {}
 
+    $scope.disabled = false
+
     $scope.login = function() {
+      $scope.disabled = true
       User.login($scope.user).then(function(){
         $state.go('dashboard')
       }, function(response){
         $scope.errors.login = 'Can\'t find a user with this email address'
+        $scope.disabled = false
       })
     };
 

@@ -16,23 +16,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
-  background: #e6e6e6;
   color: #2d2d2d;
   font-family: 'Roboto', sans-serif;
 }
 
 // Headings
 h1, h2, h3 { margin: 0 }
-
-// Container styling
-.container-style {
-  overflow-x: hidden;
-  margin-top: 30px;
-  background: #fff;
-  padding: 15px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
 
 // Form styling
 form.custom {
@@ -41,6 +30,10 @@ form.custom {
   }
   .error-msg {
     padding-top: 5px;
+  }
+  .btn.inProgress {
+    @extend .disabled;
+    cursor: wait;
   }
 }
 

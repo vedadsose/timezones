@@ -1,5 +1,8 @@
 <div class="container">
-  <div class="login col-md-4 col-md-push-4 container-style">
+  <br><br>
+  <div class="login col-xs-12 col-md-8 col-md-push-2 container-style">
+    <a ui-sref="login" class="btn btn-default"> <i class="fa fa-chevron-left"></i> Back to login</a>
+    <br><br>
     <h3>Timezone Tracker <i class="fa fa-clock-o"></i></h3>
     <br>
     <b>New account</b>
@@ -13,7 +16,7 @@
       <input type="password" id="password" ng-model="user.password" class="form-control">
       <div class="error-msg text-danger" ng-if="errors.password">{{errors.password}}</div>
       <br>
-      <input class="btn btn-primary form-control" ng-click="create()" type="button" value="Create">
+      <input class="btn btn-primary form-control" ng-click="create()" ng-class="{ 'inProgress': btnDisabled }" type="button" value="Create">
       <div class="error-msg text-danger" ng-if="errors.register">{{errors.register}}</div>
     </form>
   </div>
