@@ -3,40 +3,21 @@
 </div>
 <br>
 <div class="entries">
-  <div class="entry" style="background-image: url('http://begovic-boarding-house.com/wp-content/uploads/2015/05/mostar_bg_1.jpg')">
-    <div class="overlay"></div>
-    <div class="row">
-      <div class="col-md-8">
-        <h2>Mostar</h2>
-        <div class="location">
-          <i class="fa fa-map-marker"></i> Mostar, Bosnia & Herzegovina
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="time">
-          20:38
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="entry" style="background-image: url('http://www.sanfrancisco.travel/sites/sftraveldev.prod.acquia-sites.com/files/field/image/site-photo.jpg')">
+  <div class="entry" ng-repeat="entry in entries">
     <div class="overlay">
-      <a class="delete">
+      <a class="delete" ng-click="delete(entry)">
         <i class="fa fa-times"></i>
       </a>
     </div>
     <div class="row">
       <div class="col-md-8">
-        <h2>San Francisco</h2>
+        <h2>{{entry.name}}</h2>
         <div class="location">
-          <i class="fa fa-map-marker"></i> San Francisco, USA
+          <i class="fa fa-map-marker"></i> {{entry.city}}
         </div>
       </div>
       <div class="col-md-4">
-        <div class="time">
-          20:38
-        </div>
+        <div class="time" timezone-clock data-offset="entry.gmt"></div>
       </div>
     </div>
   </div>
