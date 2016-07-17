@@ -45,7 +45,7 @@ angular.module('timezonesApp')
       $timeout.cancel(doSearch)
       doSearch = $timeout(function(){
         $scope.search()
-      }, 1500)
+      }, 800)
     })
 
     $scope.search = function() {
