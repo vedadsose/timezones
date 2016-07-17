@@ -14,5 +14,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ui.bootstrap',
+    'ngLodash'
   ]);

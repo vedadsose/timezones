@@ -1,5 +1,7 @@
 'use strict';
 
+const owner = require('./owner');
+
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
@@ -12,7 +14,7 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [],
+  create: [owner()],
   update: [],
   patch: [],
   remove: []

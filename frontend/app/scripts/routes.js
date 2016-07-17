@@ -17,6 +17,7 @@ angular
     .state('dashboard.entries', {
       url: '',
       templateUrl: 'views/dashboard/entries.html',
+      controller: 'EntriesCtrl',
       authenticate: true
     })
     .state('dashboard.users', {
