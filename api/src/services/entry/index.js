@@ -3,6 +3,7 @@
 const service = require('feathers-mongoose');
 const entry = require('./entry-model');
 const hooks = require('./hooks');
+const filter = require('feathers-query-filters');
 
 module.exports = function() {
   const app = this;

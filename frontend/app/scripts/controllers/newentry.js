@@ -8,7 +8,7 @@
  * Controller of the timezonesApp
  */
 angular.module('timezonesApp')
-  .controller('NewEntryCtrl', function ($scope, Entry, $uibModalInstance) {
+  .controller('NewEntryCtrl', function ($rootScope, $scope, Entry, $uibModalInstance) {
 
       $scope.disabled = false
 
@@ -22,6 +22,7 @@ angular.module('timezonesApp')
         $scope.disabled = true
         Entry.create($scope.entry).then(function(){
           $scope.close()
+          $rootScope.$emit('newEntry')
         }, function(error) {
           $scope.disabled = false
         })

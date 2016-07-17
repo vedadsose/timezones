@@ -31,6 +31,7 @@
     "feathers-errors": "^2.3.0",
     "feathers-hooks": "^1.5.4",
     "feathers-mongoose": "^3.5.0",
+    "feathers-query-filters": "^2.0.0",
     "feathers-rest": "^1.4.2",
     "mongoose": "^4.5.3",
     "passport": "^0.3.2",

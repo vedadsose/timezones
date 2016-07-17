@@ -15,7 +15,11 @@ angular.module('timezonesApp')
     }
 
     this.get = function(params) {
-      return $http.get(config.api+route, params)
+      return $http({
+          url: config.api+route,
+          method: 'GET',
+          params: params
+        });
     }
 
     this.delete = function(entry) {

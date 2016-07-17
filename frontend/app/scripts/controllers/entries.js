@@ -8,7 +8,7 @@
  * Controller of the timezonesApp
  */
 angular.module('timezonesApp')
-  .controller('EntriesCtrl', function ($scope, $uibModal, Entry) {
+  .controller('EntriesCtrl', function ($rootScope, $scope, $uibModal, $timeout, Entry) {
 
     $scope.openNewModal = function() {
       $uibModal.open({
@@ -18,22 +18,42 @@ angular.module('timezonesApp')
     }
 
     $scope.entries = []
-    $scope.offset = 0
-    $scope.limit = 10
+    $scope.params = {
+      $skip: 0,
+      '$sort[createdAt]': -1,
+      'name[$regex]': ''
+    }
     $scope.loadMore = true
 
+    // Loading
     $scope.loadEntries = function() {
-      Entry.get({offset: $scope.offset, limit: $scope.limit}).then(function(response){
+      Entry.get($scope.params).then(function(response){
         angular.forEach(response.data.data, function(entry) {
           $scope.entries.push(entry)
         })
 
-        $scope.offset += $scope.limit
-        $scope.loadMore = $scope.offset < response.data.total
+        $scope.params.$skip += response.data.limit
+        $scope.loadMore = $scope.$skip < response.data.total
       });
     }
 
     $scope.loadEntries()
+
+    // Searching
+    var doSearch
+    $scope.$watch('params[\'name[$regex]\']', function(){
+      $timeout.cancel(doSearch)
+      doSearch = $timeout(function(){
+        $scope.search()
+      }, 1500)
+    })
+
+    $scope.search = function() {
+      $timeout.cancel(doSearch)
+      $scope.params.$skip = 0
+      $scope.entries = []
+      $scope.loadEntries()
+    }
 
     // Deleting
     $scope.delete = function(entry) {
@@ -43,4 +63,11 @@ angular.module('timezonesApp')
         })
       }
     }
+
+    // Append new entry when added
+    $rootScope.$on('newEntry', function() {
+      $scope.entries = []
+      $scope.params.$skip = 0
+      $scope.loadEntries()
+    })
   });
