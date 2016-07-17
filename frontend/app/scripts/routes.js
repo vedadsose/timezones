@@ -9,10 +9,20 @@ angular
 
     $stateProvider
     .state('dashboard', {
+      abstract: true,
       url: '',
       templateUrl: 'views/dashboard/main.html',
-      authenticate: true,
       controller: 'DashboardCtrl'
+    })
+    .state('dashboard.entries', {
+      url: '',
+      templateUrl: 'views/dashboard/entries.html',
+      authenticate: true
+    })
+    .state('dashboard.users', {
+      url: '/users',
+      templateUrl: 'views/dashboard/users.html',
+      authenticate: true
     })
     .state('login', {
       url: '/login',

@@ -14,8 +14,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ui-sref-active="active"><a ui-sref="dashboard">Dashboard</a></li>
-        <li ui-sref-active="active"><a ui-sref="users" ng-if="me.role === 'admin' || me.role === 'manager' ">Users</a></li>
+        <li ui-sref-active="active"><a ui-sref="dashboard.entries">Entries</a></li>
+        <li ui-sref-active="active"><a ui-sref="dashboard.users" ng-if="me.role === 'admin' || me.role === 'manager' ">Users</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -31,43 +31,5 @@
   </div>
 </nav>
 <div class="container dashboard">
-  <div class="entries">
-    <div class="entry" style="background-image: url('http://begovic-boarding-house.com/wp-content/uploads/2015/05/mostar_bg_1.jpg')">
-      <div class="overlay"></div>
-      <div class="row">
-        <div class="col-md-8">
-          <h2>Mostar</h2>
-          <div class="location">
-            <i class="fa fa-map-marker"></i> Mostar, Bosnia & Herzegovina
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="time">
-            20:38
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="entry" style="background-image: url('http://www.sanfrancisco.travel/sites/sftraveldev.prod.acquia-sites.com/files/field/image/site-photo.jpg')">
-      <div class="overlay">
-        <a class="delete">
-          <i class="fa fa-times"></i>
-        </a>
-      </div>
-      <div class="row">
-        <div class="col-md-8">
-          <h2>San Francisco</h2>
-          <div class="location">
-            <i class="fa fa-map-marker"></i> San Francisco, USA
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="time">
-            20:38
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ui-view></ui-view>
 </div>
