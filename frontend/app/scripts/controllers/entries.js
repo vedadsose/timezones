@@ -8,7 +8,7 @@
  * Controller of the timezonesApp
  */
 angular.module('timezonesApp')
-  .controller('EntriesCtrl', function ($rootScope, $scope, $uibModal, $timeout, Entry) {
+  .controller('EntriesCtrl', function ($rootScope, $scope, $uibModal, $timeout, Entry, $stateParams) {
 
     $scope.openNewModal = function() {
       $uibModal.open({
@@ -23,6 +23,11 @@ angular.module('timezonesApp')
       '$sort[createdAt]': -1,
       'name[$regex]': ''
     }
+
+    if($stateParams.id) {
+      $scope.params.owner = $stateParams.id
+    }
+
     $scope.loadMore = true
 
     // Loading

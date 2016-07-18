@@ -20,6 +20,12 @@ angular
       controller: 'EntriesCtrl',
       authenticate: true
     })
+    .state('dashboard.filteredentries', {
+      url: '/entries/:id',
+      templateUrl: 'views/dashboard/entries.html',
+      controller: 'EntriesCtrl',
+      authenticate: true
+    })
     .state('dashboard.users', {
       url: '/users',
       templateUrl: 'views/dashboard/users.html',

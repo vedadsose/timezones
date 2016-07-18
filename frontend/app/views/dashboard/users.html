@@ -7,7 +7,7 @@
     <tr ng-repeat="user in users">
       <td>{{user.email}}</td>
       <td class="text-right">
-        <a href="" class="btn btn-primary">
+        <a ui-sref="dashboard.filteredentries({id: user._id})" class="btn btn-primary">
           <i class="fa fa-eye"></i> See entries
         </a>
         <a ng-click="delete(user)" class="btn btn-danger">
