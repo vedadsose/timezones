@@ -12,8 +12,7 @@ module.exports = function(options) {
 
   return function(hook) {
     // Ordinary user can only see his entres
-    if(typeof hook.params.query.owner !== 'undefined' && hook.params.user.role !== 'admin') {
-    // if(hook.params.user.role === 'user' || typeof hook.params.query.owner === 'undefined') {
+    if(typeof hook.params.query.owner === 'undefined' || (typeof hook.params.query.owner !== 'undefined' && hook.params.user.role !== 'admin')) {
       hook.params.query.owner = hook.params.user._id
     }
 

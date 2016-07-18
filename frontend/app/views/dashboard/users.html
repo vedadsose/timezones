@@ -19,7 +19,7 @@
         <a ui-sref="dashboard.filteredentries({id: user._id})" class="btn btn-primary" ng-if="me.role === 'admin'">
           <i class="fa fa-eye"></i> See entries
         </a>
-        <a ng-click="delete(user)" class="btn btn-danger">
+        <a ng-click="delete(user)" class="btn btn-danger" ng-if="me.role === 'admin' || user.role === 'user'">
           <i class="fa fa-trash"></i> Delete
         </a>
       </td>
