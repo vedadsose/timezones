@@ -12,10 +12,11 @@ module.exports = function(options) {
 
   return function(hook) {
     // Ordinary user can only see his entres
-    if(hook.params.user.role === 'user' || typeof hook.params.query.owner === 'undefined') {
+    if(typeof hook.params.query.owner !== 'undefined' && hook.params.user.role !== 'admin') {
+    // if(hook.params.user.role === 'user' || typeof hook.params.query.owner === 'undefined') {
       hook.params.query.owner = hook.params.user._id
     }
-    
+
     hook.ownerfilter = true;
   };
 };

@@ -13,10 +13,10 @@
           <option value="manager">Manager</option>
           <option value="user">User</option>
         </select>
-        <span class="firstUppercase" ng-if="me.role !== 'admin' || user._id === me._id">{{me.role}}</span>
+        <span class="firstUppercase" ng-if="me.role !== 'admin' || user._id === me._id">{{user.role}}</span>
       </td>
       <td class="text-right">
-        <a ui-sref="dashboard.filteredentries({id: user._id})" class="btn btn-primary">
+        <a ui-sref="dashboard.filteredentries({id: user._id})" class="btn btn-primary" ng-if="me.role === 'admin'">
           <i class="fa fa-eye"></i> See entries
         </a>
         <a ng-click="delete(user)" class="btn btn-danger">
