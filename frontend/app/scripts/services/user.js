@@ -81,6 +81,10 @@ angular.module('timezonesApp')
       });
     }
 
+    this.update = function(user) {
+      return $http.put(config.api+route+'/'+user._id, user)
+    }
+
     this.delete = function(user) {
       return $http.delete(config.api+route+'/'+user._id)
     }

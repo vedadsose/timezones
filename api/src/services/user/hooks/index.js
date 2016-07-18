@@ -27,7 +27,7 @@ exports.before = {
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: '_id' })
+    user.restrictToRole(['admin', 'manager'])
   ],
   patch: [
     auth.verifyToken(),
