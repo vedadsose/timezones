@@ -7,10 +7,11 @@
     <br><br>
     <form class="custom">
       <label for="email">Email</label>
-      <input type="text" id="email" ng-model="user.email" class="form-control">
+      <input type="text" id="email" ng-model="user.email" class="form-control" my-enter="login()">
+      <div class="error-msg text-danger" ng-if="errors.email">{{errors.email}}</div>
       <br>
       <label for="password">Password</label>
-      <input type="password" id="password" ng-model="user.password" class="form-control">
+      <input type="password" id="password" ng-model="user.password" class="form-control" my-enter="login()">
       <br>
       <input class="btn btn-primary form-control" type="button" ng-class="{ 'inProgress': disabled }" ng-click="login()" value="Log in">
       <div class="error-msg text-danger" ng-if="errors.login">{{errors.login}}</div>

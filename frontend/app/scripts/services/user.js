@@ -48,6 +48,12 @@ angular.module('timezonesApp')
 
     this.login = function(user) {
       return new Promise(function(resolve, reject){
+        var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!emailRegex.test(user.email)) {
+          reject({email: 'Email is not valid'})
+          return
+        }
+
         $http.post(config.api+'auth/local', user).then(function(response){
           service.me = response.data.data
           localStorageService.set('user', service.me)
@@ -55,7 +61,7 @@ angular.module('timezonesApp')
           localStorageService.set('token', service.token)
           resolve()
         }, function(response) {
-          reject(response.data)
+          reject({login: 'Can\'t find a user with this email address'})
         })
       });
     }
