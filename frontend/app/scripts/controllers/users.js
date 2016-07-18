@@ -14,4 +14,12 @@ angular.module('timezonesApp')
       $scope.users = response.data.data
     })
 
+    $scope.delete = function(user) {
+      if(confirm('Are you sure you want to delete "'+user.email+'"')) {
+        User.delete(user).then(function(){
+         $scope.users.splice($scope.users.indexOf(user), 1)
+        })
+      }
+    }
+
   });

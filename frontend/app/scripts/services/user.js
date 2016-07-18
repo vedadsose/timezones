@@ -75,4 +75,8 @@ angular.module('timezonesApp')
       });
     }
 
+    this.delete = function(user) {
+      return $http.delete(config.api+route+'/'+user._id)
+    }
+
   });
