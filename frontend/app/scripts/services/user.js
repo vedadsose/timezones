@@ -82,7 +82,7 @@ angular.module('timezonesApp')
     }
 
     this.update = function(user) {
-      return $http.put(config.api+route+'/'+user._id, user)
+      return $http.put(config.api+route+'/'+user._id, {$set: user})
     }
 
     this.delete = function(user) {
