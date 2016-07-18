@@ -1,5 +1,7 @@
 'use strict';
 
+const ownerfilter = require('./ownerfilter');
+
 const owner = require('./owner');
 
 const globalHooks = require('../../../hooks');
@@ -12,7 +14,7 @@ exports.before = {
     auth.populateUser(),
     auth.restrictToAuthenticated()
   ],
-  find: [],
+  find: [ownerfilter()],
   get: [],
   create: [owner()],
   update: [],
