@@ -18,9 +18,12 @@ exports.checkEmail = function() {
   }
 }
 
-exports.restrictRole = function() {
+exports.restrictToRole = function(roles) {
   return function(hook) {
     return new Promise(function(resolve, reject) {
+      if(hook.params.user && !~roles.indexOf(hook.params.user.role)) {
+        reject(new errors.Forbidden);
+      }
       resolve()
     })
   }

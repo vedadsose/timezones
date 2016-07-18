@@ -17,7 +17,11 @@ angular.module('timezonesApp')
         var d = new Date()
         var utc = d.getTime() + (d.getTimezoneOffset() * 60000)
         var nd = new Date(utc + (3600000*scope.offset))
-        element.text([nd.getHours(), nd.getMinutes()].join(':'));
+        var hours = nd.getHours()
+        var minutes = nd.getMinutes()
+        hours = hours < 10 ? '0'+hours : hours
+        minutes = minutes < 10 ? '0'+minutes : minutes
+        element.text([hours, minutes].join(':'));
       }
     };
   });

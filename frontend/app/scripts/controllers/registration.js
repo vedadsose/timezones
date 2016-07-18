@@ -24,7 +24,7 @@ angular.module('timezonesApp')
       $scope.btnDisabled = true
       User.create($scope.user).then(function(){
         $scope.errors = {}
-        $state.go('dashboard')
+        $state.go('dashboard.entries')
       }, function(errors) {
         $scope.errors = errors
         $scope.btnDisabled = false

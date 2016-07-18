@@ -22,7 +22,7 @@ angular.module('timezonesApp')
     $scope.login = function() {
       $scope.disabled = true
       User.login($scope.user).then(function(){
-        $state.go('dashboard')
+        $state.go('dashboard.entries')
       }, function(response){
         $scope.errors.login = 'Can\'t find a user with this email address'
         $scope.disabled = false

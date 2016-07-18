@@ -23,6 +23,7 @@ angular
     .state('dashboard.users', {
       url: '/users',
       templateUrl: 'views/dashboard/users.html',
+      controller: 'UsersCtrl',
       authenticate: true
     })
     .state('login', {

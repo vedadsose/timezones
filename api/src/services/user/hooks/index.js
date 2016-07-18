@@ -10,7 +10,8 @@ exports.before = {
   find: [
     auth.verifyToken(),
     auth.populateUser(),
-    auth.restrictToAuthenticated()
+    auth.restrictToAuthenticated(),
+    user.restrictToRole(['admin', 'manager'])
   ],
   get: [
     auth.verifyToken(),
@@ -20,8 +21,7 @@ exports.before = {
   ],
   create: [
     auth.hashPassword(),
-    user.checkEmail(),
-    user.restrictRole()
+    user.checkEmail()
   ],
   update: [
     auth.verifyToken(),

@@ -12,9 +12,10 @@ angular.module('timezonesApp')
      this.me = localStorageService.get('user');
      this.token = localStorageService.get('token');
      var service = this;
+     var route = 'users'
 
      // Registration
-    this.create = function(user) {
+     this.create = function(user) {
       return $q(function(resolve, reject) {
         var errors = {}
 
@@ -64,6 +65,14 @@ angular.module('timezonesApp')
       localStorageService.set('user', service.me)
       service.token = false
       localStorageService.set('token', service.token)
+    }
+
+    this.get = function(params) {
+      return $http({
+        url: config.api+route,
+        method: 'GET',
+        params: params
+      });
     }
 
   });
