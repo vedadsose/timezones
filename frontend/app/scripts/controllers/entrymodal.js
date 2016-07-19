@@ -8,13 +8,14 @@
  * Controller of the timezonesApp
  */
 angular.module('timezonesApp')
-  .controller('EntryModalCtrl', function ($rootScope, $scope, Entry, $uibModalInstance, $timeout, $http, entry, Timezone) {
+  .controller('EntryModalCtrl', function ($rootScope, $scope, Entry, $uibModalInstance, $timeout, $http, entry, owner, Timezone) {
       $scope.disabled = false
 
       $scope.entry = entry || {
         name: '',
         city: '',
-        gmt: 0
+        gmt: 0,
+        owner: owner
       }
 
       $scope.create = function() {
@@ -29,8 +30,9 @@ angular.module('timezonesApp')
 
       $scope.save = function() {
         $scope.disabled = true
-        Entry.update($scope.entry).then(function(){
+        Entry.update($scope.entry).then(function(response){
           $scope.close()
+          $rootScope.$emit('updateEntry', response.data)
         }, function(error) {
           $scope.disabled = false
         })

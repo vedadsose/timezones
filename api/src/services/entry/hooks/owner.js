@@ -11,6 +11,8 @@ module.exports = function(options) {
   options = Object.assign({}, defaults, options);
 
   return function(hook) {
-    hook.data.owner = hook.params.user._id;
+    if(!(hook.params.user.role === 'admin' && hook.data.owner)) {
+      hook.data.owner = hook.params.user._id;
+    }
   };
 };

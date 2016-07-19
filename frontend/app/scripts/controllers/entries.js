@@ -15,7 +15,8 @@ angular.module('timezonesApp')
         templateUrl: 'views/dashboard/entry_modal.html',
         controller: 'EntryModalCtrl',
         resolve: {
-          entry: false
+          entry: false,
+          owner: function() { return $stateParams.id || false }
         }
       })
     }
@@ -78,7 +79,8 @@ angular.module('timezonesApp')
         templateUrl: 'views/dashboard/entry_modal.html',
         controller: 'EntryModalCtrl',
         resolve: {
-          entry: entry
+          entry: entry,
+          owner: function() { return $stateParams.id || false }
         }
       })
     }
@@ -88,5 +90,10 @@ angular.module('timezonesApp')
       $scope.entries = []
       $scope.params.$skip = 0
       $scope.loadEntries()
+    })
+
+    // Update entry
+    $rootScope.$on('updateEntry', function(event, updatedEntry) {
+      $scope.entries = $scope.entries.map(function(entry) { return entry._id === updatedEntry._id ? updatedEntry : entry })
     })
   });

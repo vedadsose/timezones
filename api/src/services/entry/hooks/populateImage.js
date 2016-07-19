@@ -16,6 +16,7 @@ module.exports = function(options) {
       request
         .get('https://api.teleport.org/api/urban_areas/')
         .end(function(err, res){
+          hook.data.image = ''
           let resp = JSON.parse(res.text)
           let city = resp._links['ua:item'].filter(function(city){
             return ~city.name.toLowerCase().indexOf(hook.data.city.toLowerCase())
@@ -24,7 +25,6 @@ module.exports = function(options) {
             request.get(city[0].href+'images/')
               .end(function(req, res){
                 let response = JSON.parse(res.text)
-                console.log(response.photos[0].image.web)
                 hook.data.image = response.photos[0].image.web
                 resolve()
               })
