@@ -42,26 +42,26 @@ angular.module('timezonesApp')
         $uibModalInstance.close()
       }
 
+      $scope.loadingGMT = false
+      var timeout
       $scope.$watch('entry.city', function(city, prevCity){
         if($scope.entry.name === prevCity || $scope.entry.name === '') {
           $scope.entry.name = city
         }
-      })
-
-      $scope.loadingGMT = false
-      var timeout
-      $scope.$watch('entry.city', function() {
-        $timeout.cancel(timeout)
-        timeout = $timeout(function(){
-          if($scope.entry.city === '') $scope.entry.gmt = 0
-          else {
-            $scope.loadingGMT = true
-            Timezone.determine($scope.entry.city).then(function(gmt) {
-              $scope.entry.gmt = gmt
-              $scope.loadingGMT = false
-            })
-          }
-        }, 500)
+        // City to GMT lookup
+        if(prevCity !== city) {
+          $timeout.cancel(timeout)
+          timeout = $timeout(function(){
+            if($scope.entry.city === '') $scope.entry.gmt = 0
+            else {
+              $scope.loadingGMT = true
+              Timezone.determine($scope.entry.city).then(function(gmt) {
+                $scope.entry.gmt = gmt
+                $scope.loadingGMT = false
+              })
+            }
+          }, 500)
+        }
       })
 
   });
