@@ -36,6 +36,7 @@
     "mongoose": "^4.5.3",
     "passport": "^0.3.2",
     "serve-favicon": "^2.3.0",
+    "superagent": "^2.1.0",
     "winston": "^2.2.0"
   },
   "devDependencies": {

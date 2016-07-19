@@ -13,6 +13,7 @@ const entrySchema = new Schema({
   city: { type: String, required: true },
   gmt: { type: Number, required: true },
   owner: { type: String },
+  image: { type: String, 'default': '' },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now }
 });

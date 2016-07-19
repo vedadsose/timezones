@@ -1,6 +1,9 @@
 'use strict';
 
 
+const populateImage = require('./populateImage');
+
+
 const ownerfilter = require('./ownerfilter');
 
 const owner = require('./owner');
@@ -17,9 +20,9 @@ exports.before = {
   ],
   find: [ownerfilter()],
   get: [],
-  create: [owner()],
-  update: [],
-  patch: [],
+  create: [owner(), populateImage()],
+  update: [populateImage()],
+  patch: [populateImage()],
   remove: []
 };
 

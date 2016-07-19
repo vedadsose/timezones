@@ -15,7 +15,7 @@
 </div>
 <br>
 <div class="entries">
-  <div class="entry" ng-repeat="entry in entries">
+  <div class="entry" ng-repeat="entry in entries" style="background-image: url('{{entry.image}}')">
     <div class="overlay">
       <a class="delete" ng-click="delete(entry)">
         <i class="fa fa-times"></i>
