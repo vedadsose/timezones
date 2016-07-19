@@ -13,7 +13,8 @@ angular
           var User = $injector.get('User');
 
           config.headers = config.headers || {};
-          if(User.token){
+
+          if(User.token && !~config.url.indexOf('googleapis')){
             config.headers.Authorization = 'Bearer ' + User.token;
           }
           return config;
