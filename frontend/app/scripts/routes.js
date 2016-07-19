@@ -3,14 +3,13 @@
 angular
   .module('timezonesApp')
   .config(function($stateProvider, $urlRouterProvider) {
-    //
-    // For any unmatched url, redirect to /state1
-    // $urlRouterProvider.otherwise('/404');
+
+    $urlRouterProvider.when('', '/');
 
     $stateProvider
     .state('dashboard', {
       abstract: true,
-      url: '',
+      url: '/',
       templateUrl: 'views/dashboard/main.html',
       controller: 'DashboardCtrl'
     })
