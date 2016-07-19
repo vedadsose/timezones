@@ -17,15 +17,22 @@
 <div class="entries">
   <div class="entry" ng-repeat="entry in entries" style="background-image: url('{{entry.image}}')">
     <div class="overlay">
-      <a class="delete" ng-click="delete(entry)">
-        <i class="fa fa-times"></i>
-      </a>
+      <div class="options">
+        <a class="btn btn-primary btn-sm" ng-click="edit(entry)">
+          <i class="fa fa-edit"></i>
+        </a>
+        <a class="btn btn-danger btn-sm" ng-click="delete(entry)">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-8">
-        <h2>{{entry.name}}</h2>
-        <div class="location">
-          <i class="fa fa-map-marker"></i> {{entry.city}}
+        <div class="name">
+          <h2>{{entry.name}}</h2>
+          <div class="location">
+            <i class="fa fa-map-marker"></i> {{entry.city}}
+          </div>
         </div>
       </div>
       <div class="col-md-4">
