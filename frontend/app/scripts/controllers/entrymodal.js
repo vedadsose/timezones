@@ -31,7 +31,6 @@ angular.module('timezonesApp')
         $scope.disabled = true
         Entry.update($scope.entry).then(function(){
           $scope.close()
-          $rootScope.$emit('updateEntry', $scope.entry)
         }, function(error) {
           $scope.disabled = false
         })

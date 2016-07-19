@@ -89,10 +89,4 @@ angular.module('timezonesApp')
       $scope.params.$skip = 0
       $scope.loadEntries()
     })
-
-    // Update entry
-    $rootScope.$on('updateEntry', function(updatedEntry) {
-      console.log(updatedEntry)
-      $scope.entries = $scope.entries.map(function(entry) { return entry._id === updatedEntry._id ? updatedEntry : entry })
-    })
   });
