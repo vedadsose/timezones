@@ -8,12 +8,20 @@
  * Controller of the timezonesApp
  */
 angular.module('timezonesApp')
-  .controller('UsersCtrl', function ($scope, User) {
+  .controller('UsersCtrl', function ($rootScope, $scope, User, $uibModal) {
 
     $scope.me = User.me
 
-    User.get().then(function(response) {
-      $scope.users = response.data.data
+    $scope.load = function() {
+      User.get({ $limit: 1000 }).then(function(response) {
+        $scope.users = response.data.data
+      })
+    }
+
+    $scope.load()
+
+    $rootScope.$on('update', function() {
+      $scope.load()
     })
 
     // Update role
@@ -27,6 +35,14 @@ angular.module('timezonesApp')
          $scope.users.splice($scope.users.indexOf(user), 1)
         })
       }
+    }
+
+    // Modal for new user
+    $scope.newUser = function() {
+      $uibModal.open({
+        templateUrl: 'views/dashboard/new_user.html',
+        controller: 'NewUserCtrl'
+      })
     }
 
   });

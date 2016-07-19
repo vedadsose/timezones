@@ -24,7 +24,11 @@ angular.module('timezonesApp')
       $scope.btnDisabled = true
       User.create($scope.user).then(function(){
         $scope.errors = {}
-        $state.go('dashboard.entries')
+        service.login(user).then(function(response) {
+          $state.go('dashboard.entries')
+        }, function(){
+          $scope.errors.register = 'We had an issue, please try signing in with your credentials.'
+        });
       }, function(errors) {
         $scope.errors = errors
         $scope.btnDisabled = false

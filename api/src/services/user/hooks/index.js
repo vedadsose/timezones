@@ -21,13 +21,15 @@ exports.before = {
   ],
   create: [
     auth.hashPassword(),
-    user.checkEmail()
+    user.checkEmail(),
+    hooks.remove('role')
   ],
   update: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    user.restrictToRole(['admin', 'manager'])
+    user.restrictToRole(['admin', 'manager']),
+    user.restrictFieldToRole('role', ['admin'])
   ],
   patch: [
     auth.verifyToken(),

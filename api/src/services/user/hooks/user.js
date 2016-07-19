@@ -3,6 +3,7 @@
 // User hooks
 const user = require('../user-model');
 const errors = require('feathers-errors');
+const auth = require('feathers-authentication').hooks;
 
 exports.checkEmail = function() {
   return function(hook) {
@@ -22,6 +23,17 @@ exports.restrictToRole = function(roles) {
   return function(hook) {
     return new Promise(function(resolve, reject) {
       if(hook.params.user && !~roles.indexOf(hook.params.user.role)) {
+        reject(new errors.Forbidden);
+      }
+      resolve()
+    })
+  }
+}
+
+exports.restrictFieldToRole = function(field, roles) {
+  return function(hook) {
+    return new Promise(function(resolve, reject) {
+      if(hook.params.user && !~roles.indexOf(hook.params.user.role) && (typeof hook.data[field] !== 'undefined' || typeof hook.data['$set'][field] !== 'undefined')) {
         reject(new errors.Forbidden);
       }
       resolve()

@@ -34,12 +34,8 @@ angular.module('timezonesApp')
         }
 
         // Create account
-        $http.post(config.api+'users', user).then(function(){
-          service.login(user).then(function(response) {
-            resolve()
-          }, function(){
-            reject({register: 'We had an issue, please try signing in with your credentials.'});
-          });
+        $http.post(config.api+'users', user).then(function(response){
+          resolve(response.data)
         }, function(response){
           reject(response.data.data)
         });
