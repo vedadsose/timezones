@@ -12,8 +12,11 @@ angular.module('timezonesApp')
 
     $scope.openNewModal = function() {
       $uibModal.open({
-        templateUrl: 'views/dashboard/new_entry.html',
-        controller: 'NewEntryCtrl'
+        templateUrl: 'views/dashboard/entry_modal.html',
+        controller: 'EntryModalCtrl',
+        resolve: {
+          entry: false
+        }
       })
     }
 
@@ -69,10 +72,27 @@ angular.module('timezonesApp')
       }
     }
 
+    // Edit modal
+    $scope.edit = function(entry) {
+      $uibModal.open({
+        templateUrl: 'views/dashboard/entry_modal.html',
+        controller: 'EntryModalCtrl',
+        resolve: {
+          entry: entry
+        }
+      })
+    }
+
     // Append new entry when added
     $rootScope.$on('newEntry', function() {
       $scope.entries = []
       $scope.params.$skip = 0
       $scope.loadEntries()
+    })
+
+    // Update entry
+    $rootScope.$on('updateEntry', function(updatedEntry) {
+      console.log(updatedEntry)
+      $scope.entries = $scope.entries.map(function(entry) { return entry._id === updatedEntry._id ? updatedEntry : entry })
     })
   });

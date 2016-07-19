@@ -2,17 +2,17 @@
 
 /**
  * @ngdoc function
- * @name timezonesApp.controller:NewentryCtrl
+ * @name timezonesApp.controller:EntryModalCtrl
  * @description
- * # NewentryCtrl
+ * # EntryModalCtrl
  * Controller of the timezonesApp
  */
 angular.module('timezonesApp')
-  .controller('NewEntryCtrl', function ($rootScope, $scope, Entry, $uibModalInstance, $timeout, $http) {
+  .controller('EntryModalCtrl', function ($rootScope, $scope, Entry, $uibModalInstance, $timeout, $http, entry) {
 
       $scope.disabled = false
 
-      $scope.entry = {
+      $scope.entry = entry || {
         name: '',
         city: '',
         gmt: 0
@@ -23,6 +23,16 @@ angular.module('timezonesApp')
         Entry.create($scope.entry).then(function(){
           $scope.close()
           $rootScope.$emit('newEntry')
+        }, function(error) {
+          $scope.disabled = false
+        })
+      }
+
+      $scope.save = function() {
+        $scope.disabled = true
+        Entry.update($scope.entry).then(function(){
+          $scope.close()
+          $rootScope.$emit('updateEntry', $scope.entry)
         }, function(error) {
           $scope.disabled = false
         })

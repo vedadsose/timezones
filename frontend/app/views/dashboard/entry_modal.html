@@ -1,6 +1,7 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h4 class="modal-title">Add new</h4>
+  <h4 class="modal-title" ng-show="!entry._id">Add new</h4>
+  <h4 class="modal-title" ng-show="entry._id">Edit {{entry.name}}</h4>
 </div>
 <div class="modal-body">
   <form>
@@ -27,5 +28,6 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" ng-click="close()">Cancel</button>
-  <button type="button" class="btn btn-primary" ng-click="create()" ng-class="{ 'disabled': disabled || entry.name === '' || entry.city === '' || entry.gmt === '' }">Create</button>
+  <button type="button" class="btn btn-primary" ng-click="create()" ng-class="{ 'disabled': disabled || entry.name === '' || entry.city === '' || entry.gmt === '' }" ng-show="!entry._id">Create</button>
+  <button type="button" class="btn btn-primary" ng-click="save()" ng-class="{ 'disabled': disabled || entry.name === '' || entry.city === '' || entry.gmt === '' }" ng-show="entry._id">Save</button>
 </div>
