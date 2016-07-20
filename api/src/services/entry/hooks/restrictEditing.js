@@ -13,7 +13,7 @@ module.exports = function(options) {
 
   return function(hook) {
     return new Promise(function(resolve, reject) {
-      if(hook.params.user.role !== 'admin' && hook.data.owner._id !== hook.params.user._id) {
+      if(hook.params.user.role !== 'admin' && hook.data.owner != hook.params.user._id) {
         reject(new errors.Forbidden)
       } else {
         resolve()

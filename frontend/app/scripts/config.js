@@ -3,7 +3,7 @@
 angular
   .module('timezonesApp')
   .constant('config', {
-    api: 'http://localhost:3030/'
+    api: '/api/'
   })
   .config(function ($httpProvider) {
     $httpProvider.interceptors.push(['$q', '$injector',
