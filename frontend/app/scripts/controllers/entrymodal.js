@@ -23,7 +23,7 @@ angular.module('timezonesApp')
         Entry.create($scope.entry).then(function(){
           $scope.close()
           $rootScope.$emit('newEntry')
-        }, function(error) {
+        }, function() {
           $scope.disabled = false
         })
       }
@@ -33,7 +33,7 @@ angular.module('timezonesApp')
         Entry.update($scope.entry).then(function(response){
           $scope.close()
           $rootScope.$emit('updateEntry', response.data)
-        }, function(error) {
+        }, function() {
           $scope.disabled = false
         })
       }
@@ -52,8 +52,9 @@ angular.module('timezonesApp')
         if(prevCity !== city) {
           $timeout.cancel(timeout)
           timeout = $timeout(function(){
-            if($scope.entry.city === '') $scope.entry.gmt = 0
-            else {
+            if($scope.entry.city === '') {
+              $scope.entry.gmt = 0
+            } else {
               $scope.loadingGMT = true
               Timezone.determine($scope.entry.city).then(function(gmt) {
                 $scope.entry.gmt = gmt

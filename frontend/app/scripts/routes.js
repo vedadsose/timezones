@@ -54,28 +54,10 @@ angular
       templateUrl: 'views/404.html',
       authenticate: false
     })
-    /*.state('state1.list', {
-      url: "/list",
-      templateUrl: "partials/state1.list.html",
-      controller: function($scope) {
-        $scope.items = ['a'];
-      }
-    })
-    .state('state2', {
-      url: "/state2",
-      templateUrl: "partials/state2.html"
-    })
-    .state('state2.list', {
-      url: "/list",
-      templateUrl: "partials/state2.list.html",
-      controller: function($scope) {
-        $scope.things = ["A", "Set", "Of", "Things"];
-      }
-    });*/
   })
   .run(function($rootScope, $state, User) {
-    $rootScope.$on("$stateChangeStart",
-      function(event, toState, toParams, fromState, fromParams) {
+    $rootScope.$on('$stateChangeStart',
+      function(event, toState) {
         if (toState.authenticate && !User.me) {
           $state.go('login');
           event.preventDefault();

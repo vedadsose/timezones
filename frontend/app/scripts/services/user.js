@@ -21,11 +21,15 @@ angular.module('timezonesApp')
 
         // Email validity check
         var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(!emailRegex.test(user.email)) errors.email = 'Email is not valid';
+        if(!emailRegex.test(user.email)) {
+          errors.email = 'Email is not valid';
+        }
 
         // Password strength check
         var passwordRegex = /^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{8,}$/;
-        if(!passwordRegex.test(user.password)) errors.password = 'Password should have at least 8 characters and contain at least one number and letter';
+        if(!passwordRegex.test(user.password)) {
+          errors.password = 'Password should have at least 8 characters and contain at least one number and letter';
+        }
 
         // Return errors
         if(Object.keys(errors).length > 0) {
@@ -56,7 +60,7 @@ angular.module('timezonesApp')
           service.token = response.data.token
           localStorageService.set('token', service.token)
           resolve()
-        }, function(response) {
+        }, function() {
           reject({login: 'Can\'t find a user with this email address'})
         })
       });

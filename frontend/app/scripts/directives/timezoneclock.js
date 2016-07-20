@@ -13,7 +13,7 @@ angular.module('timezonesApp')
       scope: {
         offset: '='
       },
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
         var updateText = function() {
           var d = new Date()
           var utc = d.getTime() + (d.getTimezoneOffset() * 60000)

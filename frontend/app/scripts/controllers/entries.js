@@ -66,7 +66,7 @@ angular.module('timezonesApp')
 
     // Deleting
     $scope.delete = function(entry) {
-      if(confirm('Are you sure you want to delete "'+entry.name+'"?')) {
+      if(window.confirm('Are you sure you want to delete "'+entry.name+'"?')) {
         Entry.delete(entry).then(function(){
           $scope.entries.splice($scope.entries.indexOf(entry), 1)
         })

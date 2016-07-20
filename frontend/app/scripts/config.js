@@ -14,7 +14,7 @@ angular
 
           config.headers = config.headers || {};
 
-          if(User.token && !~config.url.indexOf('googleapis')){
+          if(User.token && config.url.indexOf('googleapis') < 0){
             config.headers.Authorization = 'Bearer ' + User.token;
           }
           return config;
