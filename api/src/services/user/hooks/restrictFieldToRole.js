@@ -8,6 +8,7 @@
 const defaults = {};
 
 module.exports = function(options) {
+  let roles = options
   options = Object.assign({}, defaults, options);
 
   return function(hook) {
