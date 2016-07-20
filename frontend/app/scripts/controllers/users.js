@@ -10,18 +10,29 @@
 angular.module('timezonesApp')
   .controller('UsersCtrl', function ($rootScope, $scope, User, $uibModal) {
 
+    $scope.loadMore = false
     $scope.me = User.me
+    $scope.params = {
+      $limit: 15,
+      $skip: 0
+    }
 
-    $scope.load = function() {
-      User.get({ $limit: 1000 }).then(function(response) {
-        $scope.users = response.data.data
+    $scope.users = []
+
+    $scope.loadUsers = function() {
+      User.get($scope.params).then(function(response) {
+        angular.forEach(response.data.data, function(user) {
+          $scope.users.push(user)
+        })
+        $scope.params.$skip += $scope.params.$limit
+        $scope.loadMore = $scope.params.$skip < response.data.total
       })
     }
 
-    $scope.load()
+    $scope.loadUsers()
 
     $rootScope.$on('update', function() {
-      $scope.load()
+      $scope.loadUsers()
     })
 
     // Update role

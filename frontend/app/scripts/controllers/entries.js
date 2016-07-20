@@ -42,7 +42,7 @@ angular.module('timezonesApp')
         })
 
         $scope.params.$skip += response.data.limit
-        $scope.loadMore = $scope.$skip < response.data.total
+        $scope.loadMore = $scope.params.$skip < response.data.total
       });
     }
 

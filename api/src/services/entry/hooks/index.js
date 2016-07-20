@@ -1,6 +1,9 @@
 'use strict';
 
 
+const restrictEditing = require('./restrictEditing');
+
+
 const populateImage = require('./populateImage');
 
 
@@ -21,8 +24,8 @@ exports.before = {
   find: [ownerfilter()],
   get: [],
   create: [owner(), populateImage()],
-  update: [populateImage()],
-  patch: [populateImage()],
+  update: [populateImage(), restrictEditing()],
+  patch: [populateImage(), restrictEditing()],
   remove: []
 };
 
