@@ -58,6 +58,8 @@ angular.module('timezonesApp')
               Timezone.determine($scope.entry.city).then(function(gmt) {
                 $scope.entry.gmt = gmt
                 $scope.loadingGMT = false
+              }, function() {
+                $scope.loadingGMT = false
               })
             }
           }, 500)
