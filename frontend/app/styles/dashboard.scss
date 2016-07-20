@@ -33,7 +33,7 @@
           position: absolute;
           top: -30px;
           right: 20px;
-          transition: .2s top;
+          transition: .1s top;
           z-index: 10;
         }
       }
@@ -51,7 +51,7 @@
         text-align: right;
         font-size: 50px;
         height: 80px;
-        transition: .2s line-height;
+        transition: .1s line-height;
       }
 
       &:hover {

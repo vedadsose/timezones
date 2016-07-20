@@ -6,7 +6,7 @@
   <div class="col-sm-6">
     <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-search"></i></span>
-      <input type="text" class="form-control" placeholder="Enter search term" ng-model="params['name[$regex]']" my-enter="search()">
+      <input type="text" class="form-control" placeholder="Enter search term" ng-model="searchTerm" my-enter="search()">
     </div>
   </div>
   <div class="col-sm-6 text-right">
@@ -14,6 +14,22 @@
   </div>
 </div>
 <br>
+<div class="text-center" ng-if="loading">
+  <br><br>
+  <img src="images/loader-big.gif" alt="">
+  <br><br>
+</div>
+<div class="text-center" ng-if="!loading && entries.length === 0 && searchTerm === ''">
+  <br><br>
+  No cities. <a ng-click="openNewModal()">Add new?</a>
+  <br><br>
+</div>
+<div class="text-center" ng-if="!loading && entries.length === 0 && searchTerm !== ''">
+  <br><br>
+  No search results
+  <br><br>
+</div>
+
 <div class="entries">
   <div class="entry" ng-repeat="entry in entries" style="background-image: url('{{entry.image}}')">
     <div class="overlay">

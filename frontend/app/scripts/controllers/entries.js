@@ -22,27 +22,35 @@ angular.module('timezonesApp')
     }
 
     $scope.entries = []
+    $scope.loading = false
+    $scope.searchTerm = ''
     $scope.params = {
       $skip: 0,
-      '$sort[createdAt]': -1,
-      'name[$regex]': ''
+      '$sort[createdAt]': -1
     }
 
     if($stateParams.id) {
       $scope.params.owner = $stateParams.id
     }
 
-    $scope.loadMore = true
+    $scope.loadMore = false
 
     // Loading
     $scope.loadEntries = function() {
-      Entry.get($scope.params).then(function(response){
+      $scope.loading = true
+      var params = {}
+      angular.copy($scope.params, params)
+      if($scope.searchTerm !== '') {
+        params['name[$regex]'] = '(?i)('+$scope.searchTerm+')'
+      }
+      Entry.get(params).then(function(response){
         angular.forEach(response.data.data, function(entry) {
           $scope.entries.push(entry)
         })
 
         $scope.params.$skip += response.data.limit
         $scope.loadMore = $scope.params.$skip < response.data.total
+        $scope.loading = false
       });
     }
 
@@ -50,11 +58,13 @@ angular.module('timezonesApp')
 
     // Searching
     var doSearch
-    $scope.$watch('params[\'name[$regex]\']', function(){
+    $scope.$watch('searchTerm', function(newValue, oldValue){
       $timeout.cancel(doSearch)
-      doSearch = $timeout(function(){
-        $scope.search()
-      }, 800)
+      if(newValue !== oldValue) {
+        doSearch = $timeout(function(){
+          $scope.search()
+        }, 800)
+      }
     })
 
     $scope.search = function() {

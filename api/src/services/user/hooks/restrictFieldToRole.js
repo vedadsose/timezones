@@ -7,10 +7,7 @@
 
 const defaults = {};
 
-module.exports = function(options) {
-  let roles = options
-  options = Object.assign({}, defaults, options);
-
+module.exports = function(field, roles) {
   return function(hook) {
     return new Promise(function(resolve, reject) {
       if(hook.params.user && !~roles.indexOf(hook.params.user.role) && (typeof hook.data[field] !== 'undefined' || typeof hook.data['$set'][field] !== 'undefined')) {
