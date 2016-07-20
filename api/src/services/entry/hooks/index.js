@@ -1,19 +1,13 @@
 'use strict';
 
-
-const restrictEditing = require('./restrictEditing');
-
-
-const populateImage = require('./populateImage');
-
-
-const ownerfilter = require('./ownerfilter');
-
-const owner = require('./owner');
-
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
+
+const restrictEditing = require('./restrictEditing');
+const populateImage = require('./populateImage');
+const ownerfilter = require('./ownerfilter');
+const owner = require('./owner');
 
 exports.before = {
   all: [

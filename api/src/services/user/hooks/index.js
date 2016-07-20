@@ -3,7 +3,10 @@
 const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
-const user = require('./user.js');
+
+const checkEmail = require('./checkEmail');
+const restrictToRole = require('./restrictToRole');
+const restrictFieldToRole = require('./restrictFieldToRole');
 
 exports.before = {
   all: [],
@@ -11,7 +14,7 @@ exports.before = {
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    user.restrictToRole(['admin', 'manager'])
+    restrictToRole(['admin', 'manager'])
   ],
   get: [
     auth.verifyToken(),
@@ -21,27 +24,30 @@ exports.before = {
   ],
   create: [
     auth.hashPassword(),
-    user.checkEmail(),
-    hooks.remove('role')
+    hooks.remove('role'),
+    checkEmail()
   ],
   update: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    user.restrictToRole(['admin', 'manager']),
-    user.restrictFieldToRole('role', ['admin'])
+    checkEmail(),
+    restrictToRole(['admin', 'manager']),
+    restrictFieldToRole('role', ['admin'])
   ],
   patch: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    auth.restrictToOwner({ ownerField: '_id' })
+    auth.restrictToOwner({ ownerField: '_id' }),
+    checkEmail(),
+    restrictToRole(['admin', 'manager'])
   ],
   remove: [
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    user.restrictToRole(['admin', 'manager'])
+    restrictToRole(['admin', 'manager'])
   ]
 };
 
